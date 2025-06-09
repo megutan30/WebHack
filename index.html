@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>システム侵入中... - ハッカーゲーム</title>
+    <style>
+        body {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        .terminal {
+            border: 2px solid #00ff00;
+            padding: 20px;
+            height: 80vh;
+            overflow-y: auto;
+            background: rgba(0, 20, 0, 0.8);
+            box-shadow: 0 0 20px #00ff00;
+        }
+        
+        .glitch {
+            animation: glitch 0.3s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+        
+        .blinking {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .secret-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid #ff0000;
+            padding: 20px;
+            color: #ff0000;
+            z-index: 1000;
+        }
+        
+        .success {
+            color: #00ffff;
+            font-weight: bold;
+        }
+        
+        .warning {
+            color: #ffff00;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal" id="terminal">
+        <div class="glitch">
+            ████████████████████████████████████<br>
+            ██ NEXUS CORP SECURITY SYSTEM ██<br>
+            ████████████████████████████████████<br>
+        </div>
+        <br>
+        <div id="story">
+            <span class="warning">⚠️ 警告: 不正アクセスが検出されました</span><br><br>
+            あなたは謎のハッカー集団から緊急の依頼を受けた。<br>
+            巨大企業NEXUS CORPが隠蔽している機密情報を暴露せよ。<br><br>
+            <span class="success">ミッション開始...</span><br><br>
+            
+            💡 <strong>操作方法:</strong><br>
+            1. F12を押して開発者ツールを開いてください<br>
+            2. Console画面を選択してください<br>
+            3. 指示に従ってコマンドを入力してください<br><br>
+            
+            <span class="blinking">>>> 最初のコマンド: hack.start() を入力してください</span>
+        </div>
+        
+        <div id="level1" class="hidden">
+            <span class="success">システムに侵入成功...</span><br><br>
+            ファイアウォールを迂回中...<br>
+            <div class="glitch">ERROR... ERROR... BYPASSING...</div><br>
+            
+            🔍 セキュリティログを調査してください<br>
+            <span class="blinking">>>> 次のコマンド: hack.scanLogs() を入力してください</span>
+        </div>
+        
+        <div id="level2" class="hidden">
+            <span class="warning">⚠️ セキュリティログ解析中...</span><br><br>
+            <div class="error">
+            [2025-06-09 14:23:15] CRITICAL: Unauthorized access attempt<br>
+            [2025-06-09 14:23:16] INFO: Employee ID 7834 accessed classified files<br>
+            [2025-06-09 14:23:17] WARNING: Multiple failed login attempts detected<br>
+            </div><br>
+            
+            🎯 従業員ID 7834が怪しい...<br>
+            この従業員の詳細情報を取得してください<br>
+            <span class="blinking">>>> 次のコマンド: hack.getEmployee(7834) を入力してください</span>
+        </div>
+        
+        <div id="level3" class="hidden">
+            <span class="success">従業員情報取得中...</span><br><br>
+            <div class="warning">
+            ▼ EMPLOYEE RECORD ▼<br>
+            Name: Dr. Sarah Chen<br>
+            Department: Research & Development<br>
+            Security Level: TOP SECRET<br>
+            Last Access: Project PHOENIX files<br>
+            </div><br>
+            
+            🔥 Project PHOENIXが発見されました！<br>
+            このプロジェクトファイルにアクセスしてください<br>
+            <span class="blinking">>>> 次のコマンド: hack.accessProject("PHOENIX") を入力してください</span>
+        </div>
+        
+        <div id="level4" class="hidden">
+            <span class="error">🚨 ALERT: HIGH SECURITY BREACH DETECTED 🚨</span><br><br>
+            <div class="glitch">SYSTEM LOCKDOWN INITIATED...</div><br>
+            
+            💀 緊急事態！セキュリティシステムが作動しました<br>
+            Elements画面でHTML要素を直接編集して隠された情報を見つけてください<br><br>
+            
+            💡 ヒント: id="secret-data"の要素を探してdisplay:noneを削除してください<br>
+            <span class="blinking">>>> 要素を見つけたら hack.unlockSecret() を入力してください</span>
+        </div>
+        
+        <div id="secret-data" class="hidden secret-panel">
+            🔐 <strong>CLASSIFIED DOCUMENT</strong><br><br>
+            Project PHOENIX - 機密レベル: 極秘<br><br>
+            NEXUS CORPは市民の個人データを<br>
+            政府に無断で収集・販売している。<br><br>
+            この証拠を世界に公開せよ！<br><br>
+            <span class="success">ミッション完了まであと一歩...</span>
+        </div>
+        
+        <div id="final" class="hidden">
+            <div class="glitch">
+            ████████████████████████████████████<br>
+            ██ MISSION ACCOMPLISHED! ██<br>
+            ████████████████████████████████████<br>
+            </div><br>
+            <span class="success">
+            🎉 おめでとうございます！<br><br>
+            あなたは見事にNEXUS CORPのシステムに侵入し、<br>
+            機密情報の暴露に成功しました。<br><br>
+            真実が世界に明かされた今、<br>
+            正義が勝利しました。<br><br>
+            ハッカーとしてのスキルを証明しましたね！
+            </span><br><br>
+            <div class="warning">ゲーム終了 - ありがとうございました！</div>
+        </div>
+    </div>
+
+    <script>
+        // ゲーム状態管理
+        let gameState = {
+            level: 0,
+            completed: false
+        };
+
+        // ハッカーオブジェクト（Consoleで使用）
+        window.hack = {
+            start: function() {
+                if (gameState.level === 0) {
+                    console.log("🚀 システム侵入開始...");
+                    console.log("💻 ターミナルアクセス確立");
+                    console.warn("⚠️ 検出されないよう慎重に行動してください");
+                    
+                    document.getElementById('story').style.display = 'none';
+                    document.getElementById('level1').style.display = 'block';
+                    gameState.level = 1;
+                    
+                    setTimeout(() => {
+                        console.log("✅ レベル1クリア！次のコマンドを入力してください");
+                    }, 2000);
+                } else {
+                    console.log("❌ このコマンドは既に実行済みです");
+                }
+            },
+            
+            scanLogs: function() {
+                if (gameState.level === 1) {
+                    console.log("🔍 セキュリティログをスキャン中...");
+                    console.table([
+                        {time: "14:23:15", level: "CRITICAL", message: "Unauthorized access"},
+                        {time: "14:23:16", level: "INFO", message: "Employee 7834 file access"},
+                        {time: "14:23:17", level: "WARNING", message: "Failed login attempts"}
+                    ]);
+                    
+                    document.getElementById('level1').style.display = 'none';
+                    document.getElementById('level2').style.display = 'block';
+                    gameState.level = 2;
+                    
+                    console.log("✅ ログ解析完了！怪しい従業員を調査しましょう");
+                } else {
+                    console.log("❌ 前のステップを完了してください");
+                }
+            },
+            
+            getEmployee: function(id) {
+                if (gameState.level === 2 && id === 7834) {
+                    console.log("👤 従業員情報を取得中...");
+                    console.group("Employee Record");
+                    console.log("Name: Dr. Sarah Chen");
+                    console.log("Department: Research & Development");  
+                    console.log("Security Level: TOP SECRET");
+                    console.warn("⚠️ 機密プロジェクトへのアクセス履歴あり");
+                    console.groupEnd();
+                    
+                    document.getElementById('level2').style.display = 'none';
+                    document.getElementById('level3').style.display = 'block';
+                    gameState.level = 3;
+                    
+                    console.log("✅ 重要な手がかりを発見！Project PHOENIXを調査しましょう");
+                } else if (gameState.level !== 2) {
+                    console.log("❌ 前のステップを完了してください");
+                } else {
+                    console.log("❌ 無効な従業員IDです");
+                }
+            },
+            
+            accessProject: function(projectName) {
+                if (gameState.level === 3 && projectName === "PHOENIX") {
+                    console.error("🚨 HIGH SECURITY ALERT!");
+                    console.log("💀 システムロックダウンが開始されました");
+                    console.log("🛠️ Elements画面でid='secret-data'を探してください");
+                    console.log("👀 display:none を削除して隠された情報を表示させてください");
+                    
+                    document.getElementById('level3').style.display = 'none';
+                    document.getElementById('level4').style.display = 'block';
+                    gameState.level = 4;
+                    
+                    // 警告音効果
+                    this.playAlert();
+                } else if (gameState.level !== 3) {
+                    console.log("❌ 前のステップを完了してください");
+                } else {
+                    console.log("❌ 不明なプロジェクト名です");
+                }
+            },
+            
+            unlockSecret: function() {
+                if (gameState.level === 4) {
+                    const secretElement = document.getElementById('secret-data');
+                    if (secretElement && !secretElement.classList.contains('hidden')) {
+                        console.log("🎉 機密情報の暴露に成功！");
+                        console.log("📄 重要な証拠を発見しました");
+                        console.log("🌍 真実が世界に明かされます...");
+                        
+                        document.getElementById('level4').style.display = 'none';
+                        document.getElementById('secret-data').style.display = 'none';
+                        document.getElementById('final').style.display = 'block';
+                        gameState.level = 5;
+                        gameState.completed = true;
+                        
+                        this.celebrate();
+                    } else {
+                        console.log("❌ まずElements画面でsecret-data要素を表示させてください");
+                        console.log("💡 ヒント: class='hidden'を削除するか、display:noneを削除してください");
+                    }
+                } else {
+                    console.log("❌ 前のステップを完了してください");
+                }
+            },
+            
+            help: function() {
+                console.group("🆘 ヘルプ - 利用可能なコマンド");
+                console.log("hack.start() - ゲーム開始");
+                console.log("hack.scanLogs() - ログをスキャン");
+                console.log("hack.getEmployee(id) - 従業員情報取得");
+                console.log("hack.accessProject(name) - プロジェクトアクセス");
+                console.log("hack.unlockSecret() - 秘密の解除");
+                console.log("hack.status() - 現在の状態確認");
+                console.groupEnd();
+            },
+            
+            status: function() {
+                console.log(`📊 現在のレベル: ${gameState.level}`);
+                console.log(`🎯 完了状況: ${gameState.completed ? '完了' : '進行中'}`);
+            },
+            
+            playAlert: function() {
+                // 警告エフェクト
+                document.body.style.animation = 'glitch 0.1s infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 3000);
+            },
+            
+            celebrate: function() {
+                // 完了エフェクト
+                console.log(`
+    🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉
+    🎊  MISSION COMPLETE!  🎊
+    🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉
+                `);
+                
+                // 画面エフェクト
+                const colors = ['#00ff00', '#00ffff', '#ffff00'];
+                let colorIndex = 0;
+                const interval = setInterval(() => {
+                    document.body.style.color = colors[colorIndex];
+                    colorIndex = (colorIndex + 1) % colors.length;
+                }, 200);
+                
+                setTimeout(() => {
+                    clearInterval(interval);
+                    document.body.style.color = '#00ff00';
+                }, 3000);
+            }
+        };
+
+        // 初期メッセージ
+        console.log("🕵️ ハッカーゲームへようこそ！");
+        console.log("💻 hack.help() でコマンド一覧を確認できます");
+        console.log("🚀 hack.start() でゲームを開始してください");
+        
+        // イースターエッグ
+        console.log("%c👾 HACKER MODE ACTIVATED 👾", "color: #00ff00; font-size: 20px; font-weight: bold;");
+    </script>
+</body>
+</html>
